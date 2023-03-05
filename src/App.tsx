@@ -77,6 +77,7 @@ function App() {
               meals={meals}
               loading={loading}
               totalCalories={totalCalories}
+              fetchMeals={fetchMeals}
             />)}/>
           <Route path="/add-new-meal" element={<AddMeal/>}/>
           <Route path="/edit-meal/:id" element={<EditMeal/>}/>

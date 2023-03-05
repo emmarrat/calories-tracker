@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {MealType} from "../../types";
 import dayjs from "dayjs";
+import axiosApi from "../../axiosApi";
 
 interface Props {
   meal: MealType;
+  fetchMeals: () => void;
 }
 
-const MealCard: React.FC<Props> = ({meal}) => {
+const MealCard: React.FC<Props> = ({meal, fetchMeals}) => {
+  const [deleting, setDeleting] = useState(false);
 
+  const deleteMeal = async (id: string) => {
+    try {
+      setDeleting(true);
+      if (window.confirm('Please confirm that you want to delete selected meal')) {
+        await axiosApi.delete('/meals/' + id + '.json');
+        await fetchMeals();
+      }
+    } finally {
+      setDeleting(false);
+    }
+  };
   return (
     <div className="card border-0 mb-3 col-10 col-md-9 shadow-lg p-3 bg-body rounded">
       <div className="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -24,7 +38,7 @@ const MealCard: React.FC<Props> = ({meal}) => {
             <p className="card-text mb-3 m-md-0">{meal.calories} kcal</p>
             <div className="d-flex flex-md-column align-items-center align-items-md-end justify-content-between w-50">
               <Link to={"/edit-meal/" + meal.id} className="btn btn-warning text-light d-block mb-md-1 w-75 me-2 me-md-0">Edit</Link>
-              <button className="btn btn-danger d-block w-75">Delete</button>
+              <button onClick={() => deleteMeal(meal.id)} disabled={deleting} className="btn btn-danger d-block w-75">Delete</button>
             </div>
           </div>
         </div>

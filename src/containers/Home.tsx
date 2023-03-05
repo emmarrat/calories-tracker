@@ -8,14 +8,15 @@ interface Props {
   meals: MealType[];
   loading: boolean;
   totalCalories: number;
+  fetchMeals: () => void;
 }
 
-const Home: React.FC<Props> = ({meals, loading, totalCalories}) => {
+const Home: React.FC<Props> = ({meals, loading, totalCalories, fetchMeals}) => {
 
   let content = (
     <div className="mt-5 d-flex flex-column align-items-center">
       {meals.map(meal => (
-        <MealCard meal={meal} key={meal.id}/>
+        <MealCard fetchMeals={fetchMeals} meal={meal} key={meal.id}/>
       ))}
     </div>
   );
@@ -31,9 +32,9 @@ const Home: React.FC<Props> = ({meals, loading, totalCalories}) => {
     <>
       {loading ? <Spinner/> : (
         <>
-          <div className="d-md-flex justify-content-md-between">
+          <div className="d-md-flex justify-content-md-between align-items-center">
             <div>
-              <h3>Total calories for today: {totalCalories} kcal</h3>
+              <h3>Total kcal for today: {totalCalories}</h3>
             </div>
             <AddMealButton/>
           </div>
