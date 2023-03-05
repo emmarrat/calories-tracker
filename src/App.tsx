@@ -12,7 +12,20 @@ function App() {
 
   const [meals, setMeals] = useState<MealType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [totalCalories, setTotalCalories] = useState<number>(0);
 
+  const getTotalCalories = useCallback((meals: MealType[]) => {
+    const now = new Date().toDateString();
+    const total = meals.reduce((acc, meal) => {
+      if (meal.date === now) {
+        return acc + meal.calories;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    setTotalCalories(total);
+  }, []);
 
   const fetchMeals = useCallback(async () => {
     try {
@@ -29,6 +42,7 @@ function App() {
             id,
           }
         });
+        getTotalCalories(newMeals);
         const sortedMeals = newMeals.sort(function (a, b) {
           return Date.parse(b.date) - Date.parse(a.date);
         });
@@ -40,7 +54,7 @@ function App() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [getTotalCalories]);
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -60,7 +74,8 @@ function App() {
             <Home
               meals={meals}
               loading={loading}
-          />)}/>
+              totalCalories={totalCalories}
+            />)}/>
           <Route path="/add-new-meal" element={<AddMeal/>}/>
           <Route path="*" element={<h2 className="text-center mt-5">Page not found!</h2>}/>
         </Routes>
