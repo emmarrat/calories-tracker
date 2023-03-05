@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {MealType} from "../../types";
+import dayjs from "dayjs";
 
 interface Props {
   meal: MealType;
@@ -15,7 +16,7 @@ const MealCard: React.FC<Props> = ({meal}) => {
           <div className="d-flex flex-column flex-sm-row flex-md-column align-items-center align-items-md-start justify-content-between mb-3">
             <h5 className="card-title mb-0">{meal.time}</h5>
             <p className="card-text mb-0">{meal.descr}</p>
-            <p className="card-text mb-0">{meal.date}</p>
+            <p className="card-text mb-0">{dayjs(meal.date).format('MMMM DD, YYYY')}</p>
           </div>
         </div>
         <div className="col-12 col-md-6">
