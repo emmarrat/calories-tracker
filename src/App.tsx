@@ -15,9 +15,10 @@ function App() {
   const [totalCalories, setTotalCalories] = useState<number>(0);
 
   const getTotalCalories = useCallback((meals: MealType[]) => {
-    const now = new Date().toDateString();
-    const total = meals.reduce((acc, meal) => {
-      if (meal.date === now) {
+    const today = new Date().toISOString().slice(0,10);
+    const total = meals.reduce((acc, meal, i) => {
+      const dateFromMeals = meals[i].date.slice(0,10);
+      if (dateFromMeals === today) {
         return acc + meal.calories;
       } else {
         return acc;

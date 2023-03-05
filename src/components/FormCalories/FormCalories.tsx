@@ -15,7 +15,7 @@ const FormCalories: React.FC<Props> = ({onSubmit, loading, editingMeal}) => {
     time: '',
     descr: '',
     calories: '',
-    date: ''
+    date: new Date().toISOString(),
   });
 
   const onChangeForm = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -30,7 +30,6 @@ const FormCalories: React.FC<Props> = ({onSubmit, loading, editingMeal}) => {
     e.preventDefault();
     onSubmit({
       ...meal,
-      date: new Date().toISOString(),
       calories: parseFloat(meal.calories),
     });
   };

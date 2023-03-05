@@ -33,7 +33,7 @@ const Home: React.FC<Props> = ({meals, loading, totalCalories}) => {
         <>
           <div className="d-md-flex justify-content-md-between">
             <div>
-              <h3>Total calories for today: {totalCalories}</h3>
+              <h3>Total calories for today: {totalCalories} kcal</h3>
             </div>
             <AddMealButton/>
           </div>
