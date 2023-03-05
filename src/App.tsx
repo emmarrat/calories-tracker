@@ -5,6 +5,7 @@ import AddMeal from "./containers/AddMeal/AddMeal";
 import Home from "./containers/Home";
 import {MealsListApi, MealType} from "./types";
 import axiosApi from "./axiosApi";
+import EditMeal from "./containers/EditMeal/EditMeal";
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
               totalCalories={totalCalories}
             />)}/>
           <Route path="/add-new-meal" element={<AddMeal/>}/>
+          <Route path="/edit-meal/:id" element={<EditMeal/>}/>
           <Route path="*" element={<h2 className="text-center mt-5">Page not found!</h2>}/>
         </Routes>
       </main>
