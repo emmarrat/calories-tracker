@@ -1,6 +1,6 @@
 # Calories tracker app
+![calories](https://user-images.githubusercontent.com/99384076/222954016-aad918d6-5765-4875-9119-48724e324868.gif)
 
-![calories.gif](..%2F..%2F..%2FDocuments%2FJOB%20APPLY%2Fprojects%20gif%2Fcalories.gif)
 
 ## Features:
 - Add meals, choosing the meal period
