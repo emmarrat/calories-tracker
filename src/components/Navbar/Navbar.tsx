@@ -5,7 +5,7 @@ const Navbar: React.FC = () => {
   return (
     <div className="navbar navbar-expand-sm navbar-dark bg-success">
       <div className="container">
-        <NavLink to="/" className="navbar-brand">Calorie tracker</NavLink>
+        <NavLink to="/" className="navbar-brand">Calories tracker</NavLink>
       </div>
     </div>
   );
