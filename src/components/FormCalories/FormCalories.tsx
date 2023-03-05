@@ -41,9 +41,8 @@ const FormCalories: React.FC<Props> = ({onSubmit, loading, editingMeal}) => {
         <button onClick={() => navigate('/')} className="btn btn-sm btn-secondary">Cancel</button>
       </div>
       <form className="mt-3" onSubmit={submitForm}>
-        <div className="row">
-
-          <div className="col-12 col-md-8 form-group mb-3">
+        <div className="row d-flex flex-column align-items-center">
+          <div className="col-12 col-md-8 form-group mb-3 d-flex flex-column align-items-center">
             <label className="form-label">
               <select
                 className="form-select"
@@ -61,7 +60,7 @@ const FormCalories: React.FC<Props> = ({onSubmit, loading, editingMeal}) => {
               </select>
             </label>
           </div>
-          <div className="col-12 col-md-8  form-group mb-3">
+          <div className="col-12 col-md-6  form-group mb-3">
             <label className="form-label">Meal description</label>
             <input
               disabled={loading}
@@ -85,13 +84,14 @@ const FormCalories: React.FC<Props> = ({onSubmit, loading, editingMeal}) => {
               required
             />
           </div>
+          <div className="form-group mt-3 col-6">
+            <button disabled={loading} className="btn btn-success w-100">
+              {loading && <ButtonSpinner/>}
+              {editingMeal ? 'Update' : 'Save'}
+            </button>
+          </div>
         </div>
-        <div className="form-group mt-3">
-          <button disabled={loading} className="btn btn-success">
-            {loading && <ButtonSpinner/>}
-            {editingMeal ? 'Update' : 'Save'}
-          </button>
-        </div>
+
       </form>
     </>
   );
